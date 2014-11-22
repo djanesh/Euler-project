@@ -45,7 +45,190 @@ def primefactor(number):
 
 primefactor(600851475143)            
 
-class hello:
-    kind = 'cat'
-    color = 'green'
+
+## Largest palindrome product
+# A palindrome number reads the same both ways. THe largest palindrome made from the product of
+# two 2-digit numbers is 9009 = 91 * 99.
+
+# What is the largest palindrome made from the product of two 3-digit numbers.
+
+def palindrome(number):
+    num1 = str(number)
+    lennum = len(num1)
+    leftpart=num1[:int(lennum//2)]
+    rightpart = num1[-int(lennum//2):]
+    if leftpart==rightpart[::-1]:
+        palindrome = number
+        return number
+    else:
+        return 0
+
+maxpalin=[]            
+for i in range(1,999):
+    for j in range(1,999):
+        product = i*j
+        if palindrome(product) != 0:
+            maxpalin.append(palindrome(product))
+
+print(max(maxpalin))
+
+
+# Smallest Multiple
+# 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without
+# any remainder. What is the smaller positive number that is evenly divisible by all of the numbers
+# from 1 to 20 ?      
+
+        
+multiple= 1
+for i in range(1,21):
+    if multiple % i >0:
+        for j in range(1,21):
+            if (multiple*j)%i == 0 :
+                multiple = multiple*j
+                break
+
+print("The smallest multiple is")
+print(multiple)
+
+
+# Sum square difference
+# Problem 6
+##The sum of the squares of the first ten natural numbers is,
+##
+##12 + 22 + ... + 102 = 385
+##The square of the sum of the first ten natural numbers is,
+##
+##(1 + 2 + ... + 10)2 = 552 = 3025
+
+sum=0
+sum1 =0
+for i in range(1,101):
+    sum = sum + i*i
+    sum1 = sum1 + i
+
+print("The difference betweeen sum of the squares of the first one hundered natural numbers and the square of sum is")
+print(sum1*sum1-sum)
+
+
+# Problem 7
+# 10001st prime
+# By listing the first six prime numbers: 2,3, 5, 7, 11, and 13, we can see that the 6th prime
+# is 13. What is the 10001st prime number ?
+
+def is_prime(n):
+    if n ==1: return False
+    if n==2: return True
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+##prim_numbers = []
+##count =0
+##i=2
+##while len(prim_numbers) <10001:
+##    if is_prime(i)==True:
+##        prim_numbers.append(i)
+##    i = i + 1
+##
+##print(prim_numbers[-1])
+
+
+# Problem 8
+
+prob8 = "73167176531330624919225119674426574742355349194934" \
+"96983520312774506326239578318016984801869478851843" \
+"85861560789112949495459501737958331952853208805511"\
+"12540698747158523863050715693290963295227443043557" \
+"66896648950445244523161731856403098711121722383113" \
+"62229893423380308135336276614282806444486645238749"\
+"30358907296290491560440772390713810515859307960866"\
+"70172427121883998797908792274921901699720888093776" \
+"65727333001053367881220235421809751254540594752243"\
+"52584907711670556013604839586446706324415722155397" \
+"53697817977846174064955149290862569321978468622482" \
+"83972241375657056057490261407972968652414535100474" \
+"82166370484403199890008895243450658541227588666881" \
+"16427171479924442928230863465674813919123162824586" \
+"17866458359124566529476545682848912883142607690042" \
+"24219022671055626321111109370544217506941658960408" \
+"07198403850962455444362981230987879927244284909188" \
+"84580156166097919133875499200524063689912560717606" \
+"05886116467109405077541002256983155200055935729725" \
+"71636269561882670428252483600823257530420752963450" 
+
+print(prob8)
+
+product_prob8=[]
+numbers=[]
+
+
+numbers_prob8=[]
+for item in str(prob8):
+    numbers_prob8.append(int(item))
+
+for i in range(len(numbers_prob8)-12):
+    num1 = numbers_prob8[i]
+    num2 = numbers_prob8[i+1]
+    num3 = numbers_prob8[i+2]
+    num4 = numbers_prob8[i+3]
+    num5 = numbers_prob8[i+4]
+    num6 = numbers_prob8[i+5]
+    num7 = numbers_prob8[i+6]
+    num8 = numbers_prob8[i+7]
+    num9 = numbers_prob8[i+8]
+    num10 = numbers_prob8[i+9]
+    num11 = numbers_prob8[i+10]
+    num12 = numbers_prob8[i+11]
+    num13 = numbers_prob8[i+12]
     
+    product_prob8.append(num1*num2*num3*num4*num5*num6*num7*num8*num9*num10*num11*num12*num13)
+
+# print(product_prob8)
+print(max(product_prob8))
+    
+
+# Problem 9
+# Special Pythogorean triplet
+# A pythagorean tripset is a set of three natural numbers, a < b < c, for which,
+# a^2 + b^2 = c^2
+# For example, 3^2+4^2=9+16=25=5^2
+# There exists one Pythagorean triplet for which a + b + c = 1000.
+# Find the product abc.
+
+prob9 = []
+for i in range(1,1000):
+    for j in range(1,1000-i):
+        k = 1000-i-j
+        isquare = i*i
+        jsquare = j*j
+        ksquare = k*k
+        if isquare==jsquare+ksquare:
+            if i + j + k ==1000:
+                print("the numbers are" + str(i) + "," + str(j) + ", " + str(k))
+                print("The product is " + str(i*j*k))
+
+
+# Problem 10
+# The sum of primes below 10 is 2 + 3 + 5 + 7 = 17.
+# Find the sum of all the primes below two million
+
+def isprime(m):         # Returns True if m is a prime number
+    if m <= 1 or m%2 == 0:
+        return m==2
+    for n in range(3,int(m**0.5)+1,2):
+        if m%n == 0:
+            return False
+    return True
+
+def euler10(limit = 2000000):
+    if limit < 3:
+        return 0
+    sum = 2;
+    for i in range(3,limit,2):
+        if isprime(i):
+            sum += i
+    return sum
+
+print(euler10(limit=2000000))
+
